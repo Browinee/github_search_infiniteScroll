@@ -1,7 +1,8 @@
 import axios from "axios";
 
+
 const http = axios.create({
-    baseURL: 'https://api.github.com/',
+    baseURL: process.env.REACT_APP_API_URL,
 });
 
 
