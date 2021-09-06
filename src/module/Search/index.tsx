@@ -1,9 +1,11 @@
 import React, {useCallback, useRef, useState} from "react";
 import Loading from "../../components/Loading";
+import ScrollTop from "../../components/ScrollTop";
 import {Container} from "./components/StyledComponents";
 import RepositoryList from "./components/RepositoryList";
 import useRepoSearch, {ConfigType, defaultConfig} from "./hooks/useRepoSearch";
 import Header from "./components/Header";
+import useScrollTop from "../../hooks/useScrollTop";
 
 function Search () {
     const [search, setSearch] = useState<ConfigType>(defaultConfig);
@@ -27,12 +29,15 @@ function Search () {
             }
         })
         if(node) observer.current?.observe(node)
-    }, [setSearch])
+    }, [setSearch]);
+
+    const [setScrollElement, scrollTop] = useScrollTop();
     return (
         <Container>
             <Header search={search} changeHandler={changeHandler}/>
-            <RepositoryList items={test.items} lastRef={lastRef}/>
+            <RepositoryList items={test.items} lastRef={lastRef} setScrollElement={setScrollElement}/>
             {/*<Loading />*/}
+            <ScrollTop scrollTo={scrollTop}/>
         </Container>
     );
 }

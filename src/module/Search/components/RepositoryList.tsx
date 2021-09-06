@@ -7,6 +7,7 @@ import {down} from "styled-breakpoints";
 type RepositoryListProps = {
     items: any[];
     lastRef: (node: HTMLDivElement | null) => void;
+    setScrollElement: (node: HTMLDivElement | null) => void;
 };
 const Container = styled.div`
   margin-top: 6rem;
@@ -19,9 +20,12 @@ const Container = styled.div`
 
 `;
 const RepositoryList = (props: RepositoryListProps) => {
-    const {items, lastRef} = props;
+    const {items, lastRef, setScrollElement} = props;
     const isLast = (idx: number) => idx === items.length - 1;
-    return <Container>
+    return <Container ref={node => {
+        console.log("node", node);
+        setScrollElement(node)
+    }}>
         {
             items.map((info, idx) => <div
                 key={info.id + idx.toString()} ref={isLast(idx) ? lastRef : null}><Card {...info} /></div>)
