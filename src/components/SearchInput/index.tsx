@@ -14,9 +14,9 @@ const Input = styled.input`
   padding: 10px 20px;
   border: solid 2px #686868;
   border-radius: 5px;
-  margin-right: 5px;
   outline: none;
-
+  margin-bottom: 10px;
+  width: 70%;
   &:focus {
     border-color: #005ad8;
     transition: 0.5s;

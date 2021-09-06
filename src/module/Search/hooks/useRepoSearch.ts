@@ -1,6 +1,7 @@
 import useAsync from "../../../hooks/useAsync";
 import {useEffect} from "react";
 import http from "../../../infra";
+import {mock} from "./mock";
 
 
 export type ConfigType = {
@@ -15,7 +16,7 @@ export const defaultConfig: ConfigType = {
     per_page: 30,
     page: 1,
 }
-type RepoResult = {
+export type RepoResult = {
     incomplete_results: boolean;
     items: any[];
     total_count: number;
@@ -25,22 +26,24 @@ const defaultResponse: RepoResult = {
     items: [],
     total_count: 0,
 }
+// unauthorized : 10 /min
 const useRepoSearch = (config: ConfigType) => {
     const {run, isLoading, data, error, isError, isIdle, isSuccess} = useAsync<RepoResult>();
 
     useEffect(() => {
         if(config.q === "") return;
         console.log("config", config);
-        run(http.get('/search/repositories', {
-            params: {
-                ...defaultConfig,
-                ...config,
-            }
-        }))
+        // run(http.get('/search/repositories', {
+        //     params: {
+        //         ...defaultConfig,
+        //         ...config,
+        //     }
+        // }))
     }, [config]);
     return {
         isLoading,
-        data: config.q === "" ? defaultResponse: data,
+        data: mock,
+        // data: config.q === "" ? defaultResponse: data,
         error,
         isError,
         isIdle,
