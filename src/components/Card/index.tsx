@@ -25,7 +25,7 @@ const Card = (props: CardProps) => {
             <Star><AiFillStar />{stargazers_count}</Star>
             <Lang><AiTwotoneCheckCircle />{language}</Lang>
             <License>{getLicense(license)}</License>
-            <UpdateTime>Updated at {getLastUpdated(updated_at)}</UpdateTime>
+            <UpdateTime>{getLastUpdated(updated_at)}</UpdateTime>
 
         </Footer>
     </Container>

@@ -25,9 +25,14 @@ export const Description = styled.p`
 `;
 export const Footer = styled.footer`
   display: flex;
+  flex-wrap: wrap;
+  > div {
+    margin-right: 10px;
+  }
 `
 
-export const Star = styled.div``;
+export const Star = styled.div`
+`;
 export const Lang = styled.div``;
 export const License = styled.div``;
 export const UpdateTime = styled.div``;
