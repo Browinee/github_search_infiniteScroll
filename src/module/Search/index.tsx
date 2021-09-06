@@ -2,8 +2,8 @@ import React, {useCallback, useRef, useState} from "react";
 import Loading from "../../components/Loading";
 import {Container} from "./components/StyledComponents";
 import RepositoryList from "./components/RepositoryList";
-import SearchInput from "../../components/SearchInput";
 import useRepoSearch, {ConfigType, defaultConfig} from "./hooks/useRepoSearch";
+import Header from "./components/Header";
 
 function Search () {
     const [search, setSearch] = useState<ConfigType>(defaultConfig);
@@ -30,9 +30,9 @@ function Search () {
     }, [setSearch])
     return (
         <Container>
-            <SearchInput value={search.q} onChange={changeHandler}/>
+            <Header search={search} changeHandler={changeHandler}/>
             <RepositoryList items={test.items} lastRef={lastRef}/>
-            <Loading />
+            {/*<Loading />*/}
         </Container>
     );
 }

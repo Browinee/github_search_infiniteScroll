@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {noop} from "../../utils";
 
 
-type SearchInputType = {
+export type SearchInputType = {
     type?: string;
     placeholder?: string;
     value: string;
@@ -11,19 +11,25 @@ type SearchInputType = {
 }
 
 const Input = styled.input`
-  padding: 10px 20px;
-  border: solid 2px #686868;
+  border: none;
   border-radius: 5px;
   outline: none;
-  margin-bottom: 10px;
   width: 70%;
+  height: 3.5rem;
+  padding: 0 8px;
+  background: rgb(0, 88, 138);
+  color: white;
   &:focus {
-    border-color: #005ad8;
-    transition: 0.5s;
+    outline: none;
   }
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+
 `
 const SearchInput = (props: SearchInputType) => {
-    const {type = "text", placeholder = "Please enter the repository", value = "", onChange = noop} = props;
+    const {type = "search", placeholder = "Please enter the repository", value = "", onChange = noop} = props;
 
     return <Input
         type={type}

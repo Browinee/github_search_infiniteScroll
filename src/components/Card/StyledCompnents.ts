@@ -16,7 +16,7 @@ export const Title = styled.header`
   font-size: 2rem;
   width: 100%;
   color: black;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 `
 
 export const Description = styled.p`
@@ -27,7 +27,7 @@ export const Footer = styled.footer`
   display: flex;
   flex-wrap: wrap;
   > div {
-    margin-right: 10px;
+    margin-right: 1rem;
   }
 `
 
