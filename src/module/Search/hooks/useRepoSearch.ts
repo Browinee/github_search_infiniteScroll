@@ -1,5 +1,5 @@
 import useAsync from "../../../hooks/useAsync";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import http from "../../../infra";
 import {mock} from "./mock";
 
@@ -29,7 +29,7 @@ const defaultResponse: RepoResult = {
 // unauthorized : 10 /min
 const useRepoSearch = (config: ConfigType) => {
     const {run, isLoading, data, error, isError, isIdle, isSuccess} = useAsync<RepoResult>();
-
+    // const [totalData, setTotalData] = useState<RepoResult>([]);
     useEffect(() => {
         if(config.q === "") return;
         console.log("config", config);
@@ -40,6 +40,18 @@ const useRepoSearch = (config: ConfigType) => {
         //     }
         // }))
     }, [config]);
+    // useEffect(() => {
+    //     setTotalData((prev: RepoResult) => {
+    //         const totalItems = [...prev.items, ...(data.items)];
+    //         return {
+    //             ...prev
+    //         }
+    //         // return {
+    //         //     ...data,
+    //         //     items: totalItems
+    //         // }
+    //     });
+    // },[data]);
     return {
         isLoading,
         data: mock,

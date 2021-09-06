@@ -12,7 +12,6 @@ type CardProps = {
 }
 
 const Card = (props: CardProps) => {
-    console.log("props", props);
     const {full_name = "", description = "", stargazers_count = 0, license = "", updated_at = "", language = ""} = props;
     return <Container>
         <Title>

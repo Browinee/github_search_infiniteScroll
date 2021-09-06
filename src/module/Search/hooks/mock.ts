@@ -1,6 +1,4 @@
-import {RepoResult} from "./useRepoSearch";
-
-const a = {
+const a = () =>  ({
     "id": 5216913,
     "node_id": "MDEwOlJlcG9zaXRvcnk1MjE2OTEz",
     "name": "facebook",
@@ -100,9 +98,13 @@ const a = {
     "watchers": 996,
     "default_branch": "master",
     "score": 1.0
-}
+});
 export const mock = {
     "total_count": 161297,
     "incomplete_results": false,
-    "items": new Array(10).fill(a),
+    "items":  Array.from({length: 15}, (_, idx) => {
+        const test = a();
+        test.full_name = test.full_name + `---${idx}`;
+        return test
+    }),
 }
