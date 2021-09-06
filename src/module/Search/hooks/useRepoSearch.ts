@@ -52,7 +52,17 @@ const useRepoSearch = (config: ConfigType) => {
     //         // }
     //     });
     // },[data]);
+    const [test, setTest] = useState(mock);
+    useEffect(() => {
+        setTest((prev) => {
+            return {
+                ...prev,
+                items: [...prev.items, ...mock.items]
+            }
+        })
+    }, [config]);
     return {
+        test,
         isLoading,
         data: mock,
         // data: config.q === "" ? defaultResponse: data,
