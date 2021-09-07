@@ -10,11 +10,13 @@ export type ConfigType = {
     page: number;
     sort?: string;
     order?: string;
+    reSearch: boolean;
 }
 export const defaultConfig: ConfigType = {
     q: "",
     per_page: 30,
     page: 1,
+    reSearch: false,
 }
 export type RepoResult = {
     incomplete_results: boolean;
@@ -47,7 +49,10 @@ const useRepoSearch = (config: ConfigType) => {
     useEffect(() => {
         if(data !== null) {
             setTotalData((prev: RepoResult) => {
-                const totalItems = [...prev.items, ...(data.items)];
+                const totalItems = [
+                    ...(config.reSearch ? []: prev.items),
+                    ...data.items,
+                ];
                 return {
                     ...prev,
                     ...data,

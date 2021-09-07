@@ -12,7 +12,7 @@ function Search () {
     const [search, setSearch] = useState<ConfigType>(defaultConfig);
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        setSearch(prev => ({...prev, q: value, page: 1}));
+        setSearch(prev => ({...prev, q: value, page: 1, reSearch: true}));
     };
     const deboucedSearch = useDebounce(search, 500);
     const {totalData, isLoading, hasMore, isEmpty} = useRepoSearch(deboucedSearch);
@@ -26,6 +26,7 @@ function Search () {
                     return {
                         ...prev,
                         page: prev.page + 1,
+                        reSearch: false,
                     }
                 });
             }
