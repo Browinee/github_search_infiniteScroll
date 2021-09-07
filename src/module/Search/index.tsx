@@ -38,9 +38,12 @@ function Search () {
     return (
         <Container>
             <Header search={search} changeHandler={changeHandler}/>
-            <RepositoryList items={totalData?.items || []} lastRef={lastRef} setScrollElement={setScrollElement}/>
+            <RepositoryList items={totalData?.items || []} lastRef={lastRef} setScrollElement={setScrollElement}
+                            hasMore={hasMore}
+                            isEmpty={isEmpty}
+            />
             {isLoading && <Loading/>}
-            <ScrollTop scrollTo={scrollTop} isShow={!isEmpty} />
+            <ScrollTop scrollTo={scrollTop} isShow={!isEmpty}/>
         </Container>
 
     );

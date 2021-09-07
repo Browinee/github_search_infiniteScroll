@@ -7,6 +7,8 @@ type RepositoryListProps = {
     items: any[];
     lastRef: (node: HTMLDivElement | null) => void;
     setScrollElement: (node: HTMLDivElement | null) => void;
+    hasMore: boolean;
+    isEmpty: boolean;
 };
 const Container = styled.div`
   margin-top: 6rem;
@@ -21,15 +23,19 @@ const Container = styled.div`
 
 `;
 const RepositoryList = (props: RepositoryListProps) => {
-    const {items, lastRef, setScrollElement} = props;
+    const {items, lastRef, setScrollElement, isEmpty, hasMore} = props;
     const isLast = (idx: number) => idx === items.length - 1;
     return <Container ref={node => {
         setScrollElement(node)
     }}>
         {
-            items.length ? items.map((info, idx) => <div
+            !isEmpty
+                ? items.map((info, idx) => <div
                     key={info.id + idx.toString()} ref={isLast(idx) ? lastRef : null}><Card {...info} /></div>)
                 : <Empty/>
+        }
+        {
+            !isEmpty && !hasMore && <Empty content={"No more. Please don't scroll anymore~"}/>
         }
     </Container>
 }

@@ -2,6 +2,7 @@ import useAsync from "../../../hooks/useAsync";
 import {useEffect, useState} from "react";
 import http from "../../../infra";
 import {RepoSearchItemsResponse } from "../../../types/search";
+import {processConfig} from "../adapter";
 
 
 export type ConfigType = {
@@ -28,6 +29,7 @@ const defaultResponse: RepoResult = {
     items: [],
     total_count: 0,
 }
+
 // unauthorized user: 10 per min
 const useRepoSearch = (config: ConfigType) => {
     const {run, isLoading, data, error, isError, isIdle, isSuccess} = useAsync<RepoResult>();
@@ -39,8 +41,8 @@ const useRepoSearch = (config: ConfigType) => {
         };
         run(http.get('/search/repositories', {
             params: {
-                ...defaultConfig,
-                ...config,
+                ...processConfig(defaultConfig),
+                ...processConfig(config),
             }
         }))
      // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,7 +65,7 @@ const useRepoSearch = (config: ConfigType) => {
     },[data]);
     return {
         hasMore: totalData.total_count > totalData.items.length,
-        isEmpty: totalData.items.length === 0,
+        isEmpty: totalData.total_count === 0,
         totalData,
         isLoading,
         error,
