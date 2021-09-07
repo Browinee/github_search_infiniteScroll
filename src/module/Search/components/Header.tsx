@@ -1,7 +1,7 @@
 import React from "react";
 import SearchInput  from "../../../components/SearchInput";
 import styled from "styled-components";
-import {ConfigType} from "../hooks/useRepoSearch";
+import {ConfigType} from "../usecase/useRepoSearch";
 
 type HeaderProps = {
     search: ConfigType;
