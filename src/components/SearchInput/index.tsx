@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {noop} from "../../utils";
+import {down} from "styled-breakpoints";
 
 
 export type SearchInputType = {
@@ -26,6 +27,10 @@ const Input = styled.input`
     color: white;
     opacity: 1; /* Firefox */
   }
+  ${down('sm')} {
+    width: 100%;
+  }
+
 
 `
 const SearchInput = (props: SearchInputType) => {
