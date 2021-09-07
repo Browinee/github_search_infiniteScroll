@@ -3,9 +3,10 @@ import Loading from "../../components/Loading";
 import ScrollTop from "../../components/ScrollTop";
 import {Container} from "./components/StyledComponents";
 import RepositoryList from "./components/RepositoryList";
-import useRepoSearch, {ConfigType, defaultConfig} from "./hooks/useRepoSearch";
+import useRepoSearch, {ConfigType, defaultConfig} from "./usecase/useRepoSearch";
 import Header from "./components/Header";
 import useScrollTop from "../../hooks/useScrollTop";
+import useDebounce from "../../hooks/useDebounce";
 
 function Search () {
     const [search, setSearch] = useState<ConfigType>(defaultConfig);
@@ -13,7 +14,8 @@ function Search () {
         const value = e.target.value;
         setSearch(prev => ({...prev, q: value, page: 1}));
     };
-    const {data, test} = useRepoSearch(search);
+    const deboucedSearch = useDebounce(search, 500);
+    const {totalData, isLoading, hasMore, isEmpty} = useRepoSearch(deboucedSearch);
     const observer = useRef<IntersectionObserver>();
     const lastRef = useCallback(node => {
         observer.current = new IntersectionObserver((entries, observer) => {
@@ -35,10 +37,11 @@ function Search () {
     return (
         <Container>
             <Header search={search} changeHandler={changeHandler}/>
-            <RepositoryList items={test.items} lastRef={lastRef} setScrollElement={setScrollElement}/>
-            {/*<Loading />*/}
-            <ScrollTop scrollTo={scrollTop}/>
+            <RepositoryList items={totalData?.items || []} lastRef={lastRef} setScrollElement={setScrollElement}/>
+            {isLoading && <Loading/>}
+            <ScrollTop scrollTo={scrollTop} isShow={!isEmpty} />
         </Container>
+
     );
 }
 

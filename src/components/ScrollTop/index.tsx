@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-const Button = styled.button`
+const Button = styled.button<{ isShow: boolean }>`
+  display: ${props => props.isShow ? "block" : "none"};
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -13,12 +14,14 @@ const Button = styled.button`
 
 type ScrollTopProps = {
     scrollTo: Function;
+    isShow?: boolean;
 }
 const ScrollTop = (props: ScrollTopProps) => {
+    const {scrollTo, isShow} = props;
     const topHandler = () => {
-        props.scrollTo();
+        scrollTo();
     };
-    return <Button onClick={topHandler}>
+    return <Button onClick={topHandler} isShow={isShow === undefined ? true : isShow}>
         Top
     </Button>
 

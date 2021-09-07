@@ -1,8 +1,7 @@
-import {useCallback, useRef} from "react";
-import useRepoSearch, {ConfigType} from "../hooks/useRepoSearch";
 import styled from "styled-components";
 import Card from "../../../components/Card";
 import {down} from "styled-breakpoints";
+import Empty from "../../../components/Empty";
 
 type RepositoryListProps = {
     items: any[];
@@ -14,6 +13,8 @@ const Container = styled.div`
   width: 75%;
   overflow: auto;
   background: white;
+  height: calc(100vh - 60px);
+
   ${down('md')} {
     width: 100%;
   }
@@ -23,12 +24,12 @@ const RepositoryList = (props: RepositoryListProps) => {
     const {items, lastRef, setScrollElement} = props;
     const isLast = (idx: number) => idx === items.length - 1;
     return <Container ref={node => {
-        console.log("node", node);
         setScrollElement(node)
     }}>
         {
-            items.map((info, idx) => <div
-                key={info.id + idx.toString()} ref={isLast(idx) ? lastRef : null}><Card {...info} /></div>)
+            items.length ? items.map((info, idx) => <div
+                    key={info.id + idx.toString()} ref={isLast(idx) ? lastRef : null}><Card {...info} /></div>)
+                : <Empty/>
         }
     </Container>
 }

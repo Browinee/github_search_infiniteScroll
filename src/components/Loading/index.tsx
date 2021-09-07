@@ -9,7 +9,7 @@ const bounce = keyframes`
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   position: absolute;
   bottom:0;
   top: 0;

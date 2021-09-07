@@ -27,3 +27,5 @@ export const getLastUpdated = (time: string): string => {
 export const getLicense = (license: any) => {
     return license ? `${license.spdx_id} license` : ''
 }
+
+export const sleep = () => {}
