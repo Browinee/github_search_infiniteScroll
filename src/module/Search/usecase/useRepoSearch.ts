@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import http from "../../../infra";
 import {RepoSearchItemsResponse } from "../../../types/search";
 import {processConfig} from "../adapter";
+import {useSearchContext} from "../context";
 
 
 export type ConfigType = {
@@ -33,6 +34,8 @@ const defaultResponse: RepoResult = {
 // unauthorized user: 10 per min
 const useRepoSearch = (config: ConfigType) => {
     const {run, isLoading, data, error, isError, isIdle, isSuccess} = useAsync<RepoResult>();
+    // const {dispatchLoadingStatus} = useSearchContext();
+    // dispatchLoadingStatus(isLoading);
     const [totalData, setTotalData] = useState<RepoResult>(defaultResponse);
     useEffect(() => {
         if(config.q === "") {
@@ -62,6 +65,7 @@ const useRepoSearch = (config: ConfigType) => {
                 }
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[data]);
     return {
         hasMore: totalData.total_count > totalData.items.length,
