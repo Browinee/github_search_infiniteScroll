@@ -1,4 +1,4 @@
-import {Container, Title, Footer, Description, Star, Lang, UpdateTime, License} from "./StyledCompnents";
+import {Container, Title, Footer, Description, Star, Lang, UpdateTime, License, Content} from "./StyledCompnents";
 import {AiFillStar, AiTwotoneCheckCircle} from "react-icons/ai";
 import {getLastUpdated, getLicense} from "../../utils";
 
@@ -21,8 +21,18 @@ const Card = (props: CardProps) => {
             {description}
         </Description>
         <Footer>
-            <Star><AiFillStar />{stargazers_count}</Star>
-            <Lang><AiTwotoneCheckCircle />{language}</Lang>
+            <Star>
+                <AiFillStar />
+                <Content>
+                    {stargazers_count}
+                </Content>
+            </Star>
+            <Lang>
+                <AiTwotoneCheckCircle />
+                <Content>
+                    {language}
+                </Content>
+            </Lang>
             <License>{getLicense(license)}</License>
             <UpdateTime>{getLastUpdated(updated_at)}</UpdateTime>
 

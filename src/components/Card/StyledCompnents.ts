@@ -36,3 +36,7 @@ export const Star = styled.div`
 export const Lang = styled.div``;
 export const License = styled.div``;
 export const UpdateTime = styled.div``;
+export const Content = styled.div`
+  display: inline-block;
+  margin-left: 5px;
+`;
