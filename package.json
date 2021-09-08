@@ -108,5 +108,8 @@
       "prettier --write"
     ],
     "*.{js,css,md}": "prettier --write"
+  },
+  "resolutions": {
+    "babel-loader": "8.1.0"
   }
 }

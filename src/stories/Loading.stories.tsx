@@ -1,6 +1,5 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
-import { CardProps } from "../components/Card";
 import Loading from "../components/Loading";
 
 export default {
@@ -9,7 +8,7 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story<CardProps> = (args: CardProps) => {
+const Template: Story<any> = (args: any) => {
   return <Loading {...args} />;
 };
 

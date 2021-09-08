@@ -18,18 +18,20 @@ const Container = styled.div`
 `;
 
 const Template: Story<ScrollTopProps> = (args: ScrollTopProps) => {
-  const domRef = useRef();
+  const domRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    if (domRef) {
-      domRef.current.scrollTo({
+    domRef &&
+      domRef.current &&
+      (domRef.current as HTMLDivElement).scrollTo({
         top: 100,
         behavior: "smooth",
       });
-    }
   }, []);
   return (
-    <Container ref={domRef}>
-      <ScrollTop {...args} />
+    <Container>
+      <div ref={domRef}>
+        <ScrollTop {...args} />
+      </div>
     </Container>
   );
 };
