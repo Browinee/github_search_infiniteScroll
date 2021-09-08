@@ -8,8 +8,7 @@
 
 
 feature:
-ㄋㄟ
-handle rate limit
-handle error status
-//Status: 503 Service Unavailable
-// Status: 422 Unprocessable Entity
+- handle rate limit
+- handle error status
+- //Status: 503 Service Unavailable
+- // Status: 422 Unprocessable Entity
