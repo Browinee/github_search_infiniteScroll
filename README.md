@@ -3,4 +3,13 @@
 - [ ] storybook
 - [ ] test
 - [ ] lighthouse
-- [ ] reportWebVitals
+- [ ] reportWebVitals - 內容確認
+
+
+
+feature:
+ㄋㄟ
+handle rate limit
+handle error status
+//Status: 503 Service Unavailable
+// Status: 422 Unprocessable Entity
