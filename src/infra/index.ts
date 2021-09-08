@@ -12,11 +12,17 @@ http.interceptors.request.use((config) => {
 
 http.interceptors.response.use(
     (response) => {
-        const { data } = response;
+        const {data} = response;
         return data;
     },
     (err) => {
-        return Promise.reject(err);
+        // Status: 503 Service Unavailable
+        // Status: 422 Unprocessable Entity
+        const {data, status} = err.response;
+        return Promise.reject({
+            message: data.message,
+            status,
+        });
     },
 )
 

@@ -7,6 +7,8 @@ import useRepoSearch, {ConfigType, defaultConfig} from "./usecase/useRepoSearch"
 import Header from "./components/Header";
 import useScrollTop from "../../hooks/useScrollTop";
 import useDebounce from "../../hooks/useDebounce";
+import Modal from "../../components/Modal";
+import useModal from "../../components/Modal/usecase/useModal";
 
 function Search () {
     const [search, setSearch] = useState<ConfigType>(defaultConfig);
@@ -14,8 +16,8 @@ function Search () {
         const value = e.target.value;
         setSearch(prev => ({...prev, q: value, page: 1, reSearch: true}));
     };
-    const debouncedSearch = useDebounce(search, 500);
-    const {totalData, isLoading, hasMore, isEmpty} = useRepoSearch(debouncedSearch);
+    const debouncedSearch = useDebounce(search, 5000);
+    const {totalData, isLoading, hasMore, isEmpty, isError, error} = useRepoSearch(debouncedSearch);
     const observer = useRef<IntersectionObserver>();
     const lastRef = useCallback(node => {
         observer.current = new IntersectionObserver((entries, observer) => {
@@ -34,9 +36,10 @@ function Search () {
         if(node) observer.current?.observe(node)
     }, [setSearch]);
     const [setScrollElement, scrollTop] = useScrollTop();
-    // error boundary
-    // router
+
+    const {isModalOpen, toggleModal} = useModal(isError);
     return (
+        // error boundary
         <Container>
             <Header search={search} changeHandler={changeHandler}/>
             <RepositoryList items={totalData?.items || []} lastRef={lastRef} setScrollElement={setScrollElement}
@@ -45,6 +48,7 @@ function Search () {
             />
             {isLoading && <Loading/>}
             <ScrollTop scrollTo={scrollTop} isShow={!isEmpty}/>
+            <Modal isShow={isModalOpen} toggleModal={toggleModal} contentLabel={error?.message}/>
         </Container>
 
     );

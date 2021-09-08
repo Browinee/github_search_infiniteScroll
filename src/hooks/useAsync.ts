@@ -42,7 +42,6 @@ const useAsync = <T,>(
       status: "loading",
     });
     return promise.then(setData).catch((error) => {
-      console.log("error", error);
       setError(error);
     });
   };
