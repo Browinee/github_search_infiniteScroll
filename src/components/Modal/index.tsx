@@ -3,7 +3,7 @@ import {useCallback, useEffect} from "react";
 import {BsExclamationCircle} from "react-icons/bs";
 import {MainIcon, Content, Footer, Button} from "./StyledComponents";
 
-type ModalProps = {
+export type ModalProps = {
     isShow: boolean;
     contentLabel?: string;
     toggleModal: (status: boolean) => void;

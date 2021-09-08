@@ -1,8 +1,7 @@
 import {Container, Title, Footer, Description, Star, Lang, UpdateTime, License, Content} from "./StyledCompnents";
 import {AiFillStar, AiTwotoneCheckCircle} from "react-icons/ai";
-import {getLastUpdated, getLicense} from "../../utils";
 
-type CardProps = {
+export type CardProps = {
     full_name: string;
     description: string;
     stargazers_count: number;
@@ -33,8 +32,8 @@ const Card = (props: CardProps) => {
                     {language}
                 </Content>
             </Lang>
-            <License>{getLicense(license)}</License>
-            <UpdateTime>{getLastUpdated(updated_at)}</UpdateTime>
+            <License>{license}</License>
+            <UpdateTime>{updated_at}</UpdateTime>
 
         </Footer>
     </Container>

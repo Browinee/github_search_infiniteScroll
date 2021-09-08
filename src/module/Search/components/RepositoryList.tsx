@@ -2,9 +2,11 @@ import styled from "styled-components";
 import Card from "../../../components/Card";
 import {down} from "styled-breakpoints";
 import Empty from "../../../components/Empty";
+import {getLastUpdated, getLicense} from "../../../utils";
+import {RepoSearchItemsResponse} from "../../../types/search";
 
 type RepositoryListProps = {
-    items: any[];
+    items: RepoSearchItemsResponse[];
     lastRef: (node: HTMLDivElement | null) => void;
     setScrollElement: (node: HTMLDivElement | null) => void;
     hasMore: boolean;
@@ -25,13 +27,24 @@ const Container = styled.div`
 const RepositoryList = (props: RepositoryListProps) => {
     const {items, lastRef, setScrollElement, isEmpty, hasMore} = props;
     const isLast = (idx: number) => idx === items.length - 1;
+
+
     return <Container ref={node => {
         setScrollElement(node)
     }}>
         {
             !isEmpty
-                ? items.map((info, idx) => <div
-                    key={info.id + idx.toString()} ref={isLast(idx) ? lastRef : null}><Card {...info} /></div>)
+                ? items.map((info, idx) => {
+                    const newInfo = {
+                        ...info,
+                        license: getLicense(info.license),
+                        updated_at: getLastUpdated(info.updated_at),
+                    };
+                    return (<div
+                        key={info.id + idx.toString()} ref={isLast(idx) ? lastRef : null}>
+                        <Card {...newInfo} />
+                    </div>)
+                })
                 : <Empty/>
         }
         {
@@ -42,3 +55,4 @@ const RepositoryList = (props: RepositoryListProps) => {
 
 
 export default RepositoryList;
+

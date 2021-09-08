@@ -12,7 +12,7 @@ const Button = styled.button<{ isShow: boolean }>`
   cursor: pointer;
 `;
 
-type ScrollTopProps = {
+export type ScrollTopProps = {
     scrollTo: Function;
     isShow?: boolean;
 }
