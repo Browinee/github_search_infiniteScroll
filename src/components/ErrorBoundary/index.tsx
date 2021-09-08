@@ -6,7 +6,7 @@ export class ErrorBoundary extends React.Component<React.PropsWithChildren<{ fal
   state = { error: null };
 
   static getDerivedStateFromError(error: Error) {
-    console.log("getDerivedStateFromError", error);
+    console.error("getDerivedStateFromError", error);
     return { error };
   }
 

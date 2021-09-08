@@ -16,7 +16,7 @@ function Search () {
         const value = e.target.value;
         setSearch(prev => ({...prev, q: value, page: 1, reSearch: true}));
     };
-    const debouncedSearch = useDebounce(search, 5000);
+    const debouncedSearch = useDebounce(search, 500);
     const {totalData, isLoading, hasMore, isEmpty, isError, error} = useRepoSearch(debouncedSearch);
     const observer = useRef<IntersectionObserver>();
     const lastRef = useCallback(node => {
