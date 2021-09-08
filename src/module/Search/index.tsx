@@ -36,8 +36,8 @@ function Search () {
         if(node) observer.current?.observe(node)
     }, [setSearch]);
     const [setScrollElement, scrollTop] = useScrollTop();
-
     const {isModalOpen, toggleModal} = useModal(isError);
+
     return (
         // error boundary
         <Container>
