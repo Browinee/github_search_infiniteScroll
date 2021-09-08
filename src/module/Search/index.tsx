@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from "react";
+import React, {useCallback, useState} from "react";
 import Loading from "../../components/Loading";
 import ScrollTop from "../../components/ScrollTop";
 import {Container} from "./components/StyledComponents";
@@ -9,6 +9,7 @@ import useScrollTop from "../../hooks/useScrollTop";
 import useDebounce from "../../hooks/useDebounce";
 import Modal from "../../components/Modal";
 import useModal from "../../components/Modal/usecase/useModal";
+import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 
 function Search () {
     const [search, setSearch] = useState<ConfigType>(defaultConfig);
@@ -18,23 +19,16 @@ function Search () {
     };
     const debouncedSearch = useDebounce(search, 500);
     const {totalData, isLoading, hasMore, isEmpty, isError, error} = useRepoSearch(debouncedSearch);
-    const observer = useRef<IntersectionObserver>();
-    const lastRef = useCallback(node => {
-        observer.current = new IntersectionObserver((entries, observer) => {
-            if(entries[0].isIntersecting) {
-                const {target} = entries[0];
-                observer.unobserve(target);
-                setSearch(prev => {
-                    return {
-                        ...prev,
-                        page: prev.page + 1,
-                        reSearch: false,
-                    }
-                });
+    const infiniteScrollCb = useCallback(() => {
+        setSearch(prev => {
+            return {
+                ...prev,
+                page: prev.page + 1,
+                reSearch: false,
             }
-        })
-        if(node) observer.current?.observe(node)
+        });
     }, [setSearch]);
+    const targetRef = useInfiniteScroll(infiniteScrollCb);
     const [setScrollElement, scrollTop] = useScrollTop();
     const {isModalOpen, toggleModal} = useModal(isError);
 
@@ -42,7 +36,7 @@ function Search () {
         // error boundary
         <Container>
             <Header search={search} changeHandler={changeHandler}/>
-            <RepositoryList items={totalData?.items || []} lastRef={lastRef} setScrollElement={setScrollElement}
+            <RepositoryList items={totalData?.items || []} lastRef={targetRef} setScrollElement={setScrollElement}
                             hasMore={hasMore}
                             isEmpty={isEmpty}
             />
