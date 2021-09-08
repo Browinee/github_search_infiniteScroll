@@ -1,29 +1,29 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 import Search from "./module/Search";
 import GlobalStyle from "./theme/globalStyles";
 import ResetStyle from "./theme/resestStyles";
-import styled, {ThemeProvider} from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import THEME from "./theme/theme";
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: #00324e;
-  display: flex; 
+  display: flex;
   justify-content: center;
-`
+`;
 
-function App () {
-    return (
-        <ThemeProvider theme={THEME}>
-            <Container className="App">
-                <ResetStyle/>
-                <GlobalStyle/>
-                <Search/>
-            </Container>
-        </ThemeProvider>
-    );
+function App() {
+  return (
+    <ThemeProvider theme={THEME}>
+      <Container className="App">
+        <ResetStyle />
+        <GlobalStyle />
+        <Search />
+      </Container>
+    </ThemeProvider>
+  );
 }
 
 export default App;

@@ -1,15 +1,13 @@
 import styled from "styled-components";
-import {noop} from "../../utils";
-import {down} from "styled-breakpoints";
-
+import { noop } from "../../utils";
+import { down } from "styled-breakpoints";
 
 export type SearchInputType = {
-    type?: string;
-    placeholder?: string;
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-
-}
+  type?: string;
+  placeholder?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
 const Input = styled.input`
   border: none;
@@ -23,26 +21,31 @@ const Input = styled.input`
   &:focus {
     outline: none;
   }
-  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: white;
     opacity: 1; /* Firefox */
   }
-  ${down('sm')} {
+  ${down("sm")} {
     width: 100%;
   }
-
-
-`
+`;
 const SearchInput = (props: SearchInputType) => {
-    const {type = "search", placeholder = "Please enter the repository", value = "", onChange = noop} = props;
+  const {
+    type = "search",
+    placeholder = "Please enter the repository",
+    value = "",
+    onChange = noop,
+  } = props;
 
-    return <Input
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
+  return (
+    <Input
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
     />
-}
-
+  );
+};
 
 export default SearchInput;

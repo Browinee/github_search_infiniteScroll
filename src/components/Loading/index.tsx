@@ -1,4 +1,4 @@
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const bounce = keyframes`
   to {
@@ -20,7 +20,7 @@ const Container = styled.div`
     width: 2rem;
     height: 2rem;
     margin: 2rem 0.3rem;
-    background: ${props => props.theme.colors.bluebell};
+    background: ${(props) => props.theme.colors.bluebell};
     border-radius: 50%;
     animation: 0.9s ${bounce} infinite alternate;
 
@@ -37,14 +37,13 @@ const Container = styled.div`
 `;
 
 const Loading = () => {
-    return (
-        <Container>
-            <div></div>
-            <div></div>
-            <div></div>
-        </Container>
-    )
-}
-
+  return (
+    <Container>
+      <div></div>
+      <div></div>
+      <div></div>
+    </Container>
+  );
+};
 
 export default Loading;

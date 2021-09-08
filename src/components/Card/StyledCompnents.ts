@@ -8,20 +8,18 @@ export const Container = styled.article`
   & + & {
     border-top: 0;
   }
-  
-`
-
+`;
 
 export const Title = styled.header`
   font-size: 2rem;
   width: 100%;
   color: black;
   margin-bottom: 1rem;
-`
+`;
 
 export const Description = styled.p`
-    color: rgba(0, 0, 0, 0.75);
-  margin-bottom: 10px
+  color: rgba(0, 0, 0, 0.75);
+  margin-bottom: 10px;
 `;
 export const Footer = styled.footer`
   display: flex;
@@ -29,10 +27,9 @@ export const Footer = styled.footer`
   > div {
     margin-right: 1rem;
   }
-`
-
-export const Star = styled.div`
 `;
+
+export const Star = styled.div``;
 export const Lang = styled.div``;
 export const License = styled.div``;
 export const UpdateTime = styled.div``;

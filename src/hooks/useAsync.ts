@@ -10,11 +10,7 @@ const defaultInitialState: State<null> = {
   data: null,
   error: null,
 };
-;
-
-const useAsync = <T,>(
-  initialState?: State<T>,
-) => {
+const useAsync = <T>(initialState?: State<T>) => {
   const [state, setState] = useState<State<T>>({
     ...defaultInitialState,
     ...initialState,

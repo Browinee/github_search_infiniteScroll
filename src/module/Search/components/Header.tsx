@@ -1,12 +1,12 @@
 import React from "react";
-import SearchInput  from "../../../components/SearchInput";
+import SearchInput from "../../../components/SearchInput";
 import styled from "styled-components";
-import {ConfigType} from "../usecase/useRepoSearch";
+import { ConfigType } from "../usecase/useRepoSearch";
 
 type HeaderProps = {
-    search: ConfigType;
-    changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+  search: ConfigType;
+  changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
 const Container = styled.header`
   display: flex;
@@ -19,15 +19,13 @@ const Container = styled.header`
 `;
 
 const Header = (props: HeaderProps) => {
-    const {search, changeHandler} = props;
+  const { search, changeHandler } = props;
 
-    return (
-        <Container>
-            <SearchInput value={search.q} onChange={changeHandler}/>
-        </Container>
-    )
-
-}
-
+  return (
+    <Container>
+      <SearchInput value={search.q} onChange={changeHandler} />
+    </Container>
+  );
+};
 
 export default Header;

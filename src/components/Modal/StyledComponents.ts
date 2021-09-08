@@ -12,7 +12,7 @@ export const Content = styled.main`
 `;
 export const Footer = styled.footer`
   height: 5rem;
-`
+`;
 export const Button = styled.button`
   background-color: #00324e;
   color: white;
