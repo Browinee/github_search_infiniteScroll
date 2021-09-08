@@ -5,7 +5,6 @@
 - [ ] test
 - [ ] lighthouse
 - [ ] reportWebVitals - 內容確認
-- [ ]router
 - [] lint husky
 
 feature:
@@ -18,3 +17,18 @@ feature:
 storybook
 
 testing
+
+# Search github repositories with InfiniteScroll
+
+## Feature
+
+##Setup
+
+```shell
+yarn
+yarn start
+```
+
+## Testing
+
+## Storybook
