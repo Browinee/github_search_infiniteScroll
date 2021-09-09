@@ -1,10 +1,13 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.css";
 import Search from "./module/Search";
 import GlobalStyle from "./theme/globalStyles";
 import ResetStyle from "./theme/resestStyles";
 import styled, { ThemeProvider } from "styled-components";
 import THEME from "./theme/theme";
+import { ErrorBoundary } from "./components/ErrorBoundary";
+import FullPageErrorFallback from "./components/FullPageErrorFallback";
+import Loading from "./components/Loading";
 
 const Container = styled.div`
   width: 100vw;
@@ -16,13 +19,17 @@ const Container = styled.div`
 
 function App() {
   return (
-    <ThemeProvider theme={THEME}>
-      <Container className="App">
-        <ResetStyle />
-        <GlobalStyle />
-        <Search />
-      </Container>
-    </ThemeProvider>
+    <ErrorBoundary fallbackRender={FullPageErrorFallback}>
+      <Suspense fallback={<Loading />}>
+        <ThemeProvider theme={THEME}>
+          <Container className="App">
+            <ResetStyle />
+            <GlobalStyle />
+            <Search />
+          </Container>
+        </ThemeProvider>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 

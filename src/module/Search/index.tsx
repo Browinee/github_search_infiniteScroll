@@ -37,7 +37,6 @@ function Search() {
   const { isModalOpen, toggleModal } = useModal(isError);
 
   return (
-    // error boundary
     <Container>
       <Header search={search} changeHandler={changeHandler} />
       <RepositoryList
