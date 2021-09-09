@@ -1,34 +1,38 @@
-## Todo
-
-- [ ] error handleing - error boundarly - 502 404
-- [x] storybook
-- [ ] test
 - [ ] lighthouse
 - [ ] reportWebVitals - 內容確認
-- [] lint husky
-
-feature:
-
-- handle rate limit
-- handle error status
-- //Status: 503 Service Unavailable
-- // Status: 422 Unprocessable Entity
-
-storybook
-
-testing
 
 # Search github repositories with InfiniteScroll
 
 ## Feature
 
-##Setup
+- Scroll to top
+- Edge cases
+
+  - No more data
+  - No data
+
+- Error handle
+  - Rate limit handle when api request are too much.
+  - Debounce user input
+- Errorboundary
+- Suspense
+- husky + lint(eslint, prettier, commitlint)
+  ##Setup
 
 ```shell
-yarn
-yarn start
+ git clone https://github.com/Browinee/github_search_infiniteScroll.git
+
+ cp .env.example cp .env.development
+
+ yarn
+
+ yarn start
 ```
 
 ## Testing
 
 ## Storybook
+
+```shell
+yarn run storybook
+```
