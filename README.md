@@ -1,6 +1,3 @@
-- [ ] lighthouse
-- [ ] reportWebVitals - 內容確認
-
 # Search github repositories with InfiniteScroll
 
 ## Feature
@@ -17,7 +14,8 @@
 - Errorboundary
 - Suspense
 - husky + lint(eslint, prettier, commitlint)
-  ##Setup
+
+##Setup
 
 ```shell
  git clone https://github.com/Browinee/github_search_infiniteScroll.git
@@ -36,3 +34,8 @@
 ```shell
 yarn run storybook
 ```
+
+## Performance
+
+- [ ] lighthouse
+- [ ] reportWebVitals
