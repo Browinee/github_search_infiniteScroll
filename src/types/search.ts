@@ -1,4 +1,4 @@
-const repoSearchItemsResponse = {
+export const repoSearchItemsResponse = {
   id: 5216913,
   node_id: "MDEwOlJlcG9zaXRvcnk1MjE2OTEz",
   name: "facebook",
