@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 
 const useScrollTop = (position?: number) => {
   const [scrollElement, setScrollElement] = useState<HTMLElement | null>(null);
-  const scrollTop = useCallback(() => {
+  const scrollTo = useCallback(() => {
     if (scrollElement && scrollElement.scrollTop !== 0) {
       scrollElement.scrollTo({
         top: position || 0,
@@ -10,7 +10,7 @@ const useScrollTop = (position?: number) => {
       });
     }
   }, [position, scrollElement]);
-  return [setScrollElement, scrollTop];
+  return { scrollElement, setScrollElement, scrollTo };
 };
 
 export default useScrollTop;

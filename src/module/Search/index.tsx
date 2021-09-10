@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Loading from "../../components/Loading";
 import ScrollTop from "../../components/ScrollTop";
 import { Container } from "./components/StyledComponents";
@@ -23,6 +23,7 @@ function Search() {
   const debouncedSearch = useDebounce(search, 500);
   const { totalData, isLoading, hasMore, isEmpty, isError, error } =
     useRepoSearch(debouncedSearch);
+
   const infiniteScrollCb = useCallback(() => {
     setSearch((prev) => {
       return {
@@ -33,7 +34,13 @@ function Search() {
     });
   }, [setSearch]);
   const targetRef = useInfiniteScroll(infiniteScrollCb);
-  const [setScrollElement, scrollTop] = useScrollTop();
+  const { scrollElement, setScrollElement, scrollTo } = useScrollTop();
+
+  useEffect(() => {
+    if (scrollElement) {
+      scrollTo();
+    }
+  }, [debouncedSearch.q, scrollElement, scrollTo]);
   const { isModalOpen, toggleModal } = useModal(isError);
 
   return (
@@ -47,7 +54,7 @@ function Search() {
         isEmpty={isEmpty}
       />
       {isLoading && <Loading />}
-      <ScrollTop scrollTo={scrollTop} isShow={!isEmpty} />
+      <ScrollTop scrollTo={scrollTo} isShow={!isEmpty} />
       <Modal
         isShow={isModalOpen}
         toggleModal={toggleModal}
