@@ -5,7 +5,7 @@ interface State<T> {
   data: T | null;
   status: "idle" | "loading" | "error" | "success";
 }
-const defaultInitialState: State<null> = {
+export const defaultInitialState: State<null> = {
   status: "idle",
   data: null,
   error: null,
@@ -37,9 +37,13 @@ const useAsync = <T>(initialState?: State<T>) => {
       ...state,
       status: "loading",
     });
-    return promise.then(setData).catch((error) => {
-      setError(error);
-    });
+    return promise
+      .then((data) => {
+        setData(data);
+      })
+      .catch((error) => {
+        setError(error);
+      });
   };
   return {
     isIdle: state.status === "idle",

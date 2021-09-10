@@ -28,7 +28,6 @@ const defaultResponse: RepoResult = {
   items: [],
   total_count: 0,
 };
-
 // unauthorized user: 10 per min
 const useRepoSearch = (config: ConfigType) => {
   const { run, isLoading, data, error, isError, isIdle, isSuccess } =
