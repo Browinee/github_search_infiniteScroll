@@ -21,7 +21,7 @@ const useInfiniteScroll = (
           }
         },
         {
-          rootMargin: "0px 0 px 80px 0px",
+          rootMargin: "0px 0px 80px 0px",
         }
       );
       if (node && hasMore) observer.current?.observe(node);
