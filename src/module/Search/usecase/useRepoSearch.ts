@@ -41,7 +41,7 @@ const useRepoSearch = (config: ConfigType) => {
     run(
       http.get("/search/repositories", {
         params: {
-          ...processConfig(defaultConfig),
+          // ...processConfig(defaultConfig),
           ...processConfig(config),
         },
       })

@@ -63,7 +63,7 @@ const Modal = (props: ModalProps) => {
       </MainIcon>
       <Content>
         {contentLabel}
-        <Highlight>Please search again!</Highlight>
+        <Highlight>Please wait a moment!</Highlight>
       </Content>
       <Footer>
         <Button onClick={closeModal}>Close</Button>

@@ -33,9 +33,14 @@ function Search() {
       };
     });
   }, [setSearch]);
-  const targetRef = useInfiniteScroll(infiniteScrollCb, hasMore);
+  const { targetRef, reObserve } = useInfiniteScroll(infiniteScrollCb, hasMore);
   const { scrollElement, setScrollElement, scrollTo } = useScrollTop();
 
+  useEffect(() => {
+    if (isError) {
+      reObserve();
+    }
+  }, [isError, reObserve]);
   useEffect(() => {
     if (scrollElement) {
       scrollTo();

@@ -41,10 +41,7 @@ const RepositoryList = (props: RepositoryListProps) => {
             updated_at: getLastUpdated(info.updated_at),
           };
           return (
-            <div
-              key={info.id + idx.toString()}
-              ref={isLast(idx) ? lastRef : null}
-            >
+            <div key={info.id} ref={isLast(idx) ? lastRef : null}>
               <Card {...newInfo} />
             </div>
           );
