@@ -25,3 +25,8 @@ export const Button = styled.button`
     outline: none;
   }
 `;
+
+export const Highlight = styled.p`
+  margin-top: 10px;
+  color: red;
+`;

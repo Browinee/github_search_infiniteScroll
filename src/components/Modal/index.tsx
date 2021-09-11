@@ -1,7 +1,13 @@
 import ReactModal from "react-modal";
 import { useCallback, useEffect } from "react";
 import { BsExclamationCircle } from "react-icons/bs";
-import { MainIcon, Content, Footer, Button } from "./StyledComponents";
+import {
+  MainIcon,
+  Content,
+  Footer,
+  Button,
+  Highlight,
+} from "./StyledComponents";
 
 export type ModalProps = {
   isShow: boolean;
@@ -55,7 +61,10 @@ const Modal = (props: ModalProps) => {
       <MainIcon>
         <BsExclamationCircle />
       </MainIcon>
-      <Content>{contentLabel}</Content>
+      <Content>
+        {contentLabel}
+        <Highlight>Please search again!</Highlight>
+      </Content>
       <Footer>
         <Button onClick={closeModal}>Close</Button>
       </Footer>
