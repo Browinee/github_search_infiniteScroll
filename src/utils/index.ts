@@ -1,3 +1,5 @@
+import { repoSearchItemsResponse } from "../types/search";
+
 export const noop = () => {};
 
 const Month_Map: { [month: string]: string } = {
@@ -27,3 +29,17 @@ export const getLicense = (license: any) => {
 };
 
 export const sleep = () => {};
+
+export const genMock = (amount: number) => {
+  return {
+    incomplete_results: false,
+    items: new Array(amount).fill(repoSearchItemsResponse),
+    total_count: 100,
+  };
+};
+export const genMockError = (status: number, message: string) => {
+  return {
+    status,
+    message,
+  };
+};

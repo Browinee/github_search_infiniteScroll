@@ -1,16 +1,17 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { repoSearchItemsResponse } from "./types/search";
+import { genMock } from "./utils";
 
 const handlers = [
   rest.get(`/search/repositories`, async (req, res, ctx) => {
-    console.log("handlersss", req);
-    return res(ctx.json(repoSearchItemsResponse));
+    const q = req.url.searchParams.get("q");
+    const page = req.url.searchParams.get("page");
+    if (q === "error") {
+      return res(ctx.status(403), ctx.json({ message: "API error" }));
+    }
+    return res(ctx.json(genMock(10)));
   }),
-  // rest.get("*", async(req, res, ctx) => {
-  //     console.log("wildcard", req)
-  //     return res(ctx.json(repoSearchItemsResponse));
-  // }),
 ];
 const server = setupServer(...handlers);
 export * from "msw";

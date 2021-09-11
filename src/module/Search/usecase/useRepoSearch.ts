@@ -23,7 +23,7 @@ export type RepoResult = {
   items: RepoSearchItemsResponse[];
   total_count: number;
 };
-const defaultResponse: RepoResult = {
+export const defaultResponse: RepoResult = {
   incomplete_results: false,
   items: [],
   total_count: 0,
