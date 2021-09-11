@@ -33,7 +33,7 @@ function Search() {
       };
     });
   }, [setSearch]);
-  const targetRef = useInfiniteScroll(infiniteScrollCb);
+  const targetRef = useInfiniteScroll(infiniteScrollCb, hasMore);
   const { scrollElement, setScrollElement, scrollTo } = useScrollTop();
 
   useEffect(() => {
