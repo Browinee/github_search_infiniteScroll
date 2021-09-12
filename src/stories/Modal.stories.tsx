@@ -15,4 +15,7 @@ const Template: Story<ModalProps> = (args: ModalProps) => {
 };
 
 export const Normal = Template.bind({});
-Normal.args = {};
+Normal.args = {
+  isShow: true,
+  toggleModal: () => {},
+};
