@@ -4,7 +4,7 @@ This app allows users to search github repositories when entering input. To prev
 the input value for 500ms.
 
 When users scroll too quickly and reach rate limit, it would popup a modal to present the
-error message and says "Please wait a moment". After one minute, this app would automatically re-search failure request again.
+error message and says "Please wait a moment". After one minute, if user scrolls again, it works.
 
 ## Feature
 
